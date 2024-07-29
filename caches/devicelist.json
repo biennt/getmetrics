@@ -1,0 +1,26 @@
+{
+    "devices": [
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.01",
+            "ip": "10.56.108.133",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.02",
+            "ip": "10.56.108.135",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.03",
+            "ip": "10.56.108.137",
+            "username": "admin",
+            "password": "admin"
+        }
+    ]
+}
+

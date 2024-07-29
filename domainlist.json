@@ -1,0 +1,45 @@
+{
+    "domains": [
+        {
+            "name": "facebook.com",
+            "type": "A"
+        },
+        {
+            "name": "google.com.vn",
+            "type": "A"
+        },
+        {
+            "name": "messenger.com",
+            "type": "A"
+        },
+        {
+            "name": "youtube.com",
+            "type": "A"
+        },
+        {
+            "name": "zalo.me",
+            "type": "A"
+        },
+        {
+            "name": "24h.com.vn",
+            "type": "A"
+        },
+        {
+            "name": "tiktok.com",
+            "type": "A"
+        },
+        {
+            "name": "dantri.com",
+            "type": "A"
+        },
+        {
+            "name": "vnexpress.net",
+            "type": "A"
+        },
+        {
+            "name": "shopee.vn",
+            "type": "A"
+        }
+    ]
+}
+

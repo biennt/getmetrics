@@ -1,0 +1,25 @@
+{
+    "devices": [
+       {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.01",
+            "ip": "10.56.108.139",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.02",
+            "ip": "10.56.108.141",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.03",
+            "ip": "10.56.108.143",
+            "username": "admin",
+            "password": "admin"
+        }
+    ]
+}

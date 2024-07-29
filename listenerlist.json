@@ -1,0 +1,35 @@
+{
+    "devices": [
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.01",
+            "ip": "10.209.52.4"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.02",
+            "ip": "10.209.52.25"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.03",
+            "ip": "10.209.52.46"
+        },
+        {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.01",
+            "ip": "10.209.52.67"
+        },
+        {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.02",
+            "ip": "10.209.52.68"
+        },
+        {
+            "layer": "resolver",
+            "hostname": "PDL9104.R10800.RECUR.03",
+            "ip": "10.209.52.69"
+        }
+    ]
+}
+
