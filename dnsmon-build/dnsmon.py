@@ -11,7 +11,7 @@ def dnsmon_check(device,domain):
     dns.resolver.default_resolver.nameservers = [device["ip"]]
     dns.resolver.default_resolver.timeout = 3
     retry = 3
-    while (status == "down") and (retry > 0):
+    while (status != "up") and (retry > 0):
       try:
         r = dns.resolver.resolve(domain["name"],domain["type"])
         status = "up"
