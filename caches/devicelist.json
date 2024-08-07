@@ -3,21 +3,21 @@
         {
             "layer": "cache",
             "hostname": "CACHE.AF.01",
-            "ip": "10.56.108.133",
+            "ip": "10.10.10.133",
             "username": "admin",
             "password": "admin"
         },
         {
             "layer": "cache",
             "hostname": "CACHE.AF.02",
-            "ip": "10.56.108.135",
+            "ip": "10.10.10.135",
             "username": "admin",
             "password": "admin"
         },
         {
             "layer": "cache",
             "hostname": "CACHE.AF.03",
-            "ip": "10.56.108.137",
+            "ip": "10.10.10.137",
             "username": "admin",
             "password": "admin"
         }
