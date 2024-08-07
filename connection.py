@@ -6,7 +6,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Define the connection details
 es = Elasticsearch(
-    ["https://10.209.52.71:9200", "https://10.209.52.75:9200", "https://10.209.52.79:9200"],
+    ["https://host1:9200", "https://host2:9200", "https://host3:9200"],
     basic_auth=("elastic", "change_me"),
     #api_key=("change_me", "change_me"),
     verify_certs=False 
