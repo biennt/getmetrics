@@ -9,6 +9,7 @@ import time
 def get_dnsprofile(device):
     es_index_name = "dnsprofile"
 
+    # sua cai nay khi chay production
     url = "https://" + device['ip'] + httpsport + "/mgmt/tm/ltm/profile/dns/dnsprofile/stats"
 
     username = device['username']
@@ -70,7 +71,7 @@ def get_cachestats(device):
         for key in metrics:
             valueobj = metrics[key]
             if valueobj.get('value'):
-                doc[key] = valueobj['value']
+                doc[key] = str(valueobj['value'])
 
         res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
         print("cachestats-result: {}".format(res['result']))
@@ -176,4 +177,3 @@ while True:
         get_memstats(device)
     time.sleep(interval)
 f.close()
-
