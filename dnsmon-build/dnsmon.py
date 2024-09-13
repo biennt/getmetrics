@@ -11,7 +11,7 @@ def dnsmon_check(device,domain):
     dns.resolver.default_resolver.nameservers = [device["ip"]]
     dns.resolver.default_resolver.timeout = 3
     retry = 3
-    while (status != "up") and (retry > 0):
+    while (status == "down") and (retry > 0):
       try:
         r = dns.resolver.resolve(domain["name"],domain["type"])
         status = "up"
@@ -20,7 +20,11 @@ def dnsmon_check(device,domain):
       except dns.exception.UnexpectedEnd:
         status = "UnexpectedEnd"
       except dns.resolver.NoAnswer:
-        status = "up"
+        status = "NoAnswer"
+      except dns.resolver.NoNameservers:
+        status = "NoNameServers/ServFail"
+      except dns.resolver.NXDOMAIN:
+        status = "NXDomain"
       retry = retry - 1
     print("checking {} type {} on {}, result is {}".format(domain["name"],domain["type"],device["ip"],status))
     if status == "up":
@@ -30,13 +34,13 @@ def dnsmon_check(device,domain):
 
 ######################################################
 
-interval = 30
+interval = 1
 f = open('listenerlist.json')
 d = open('domainlist.json')
 devicelist = json.load(f)
 domainlist = json.load(d)
 es_index_name = "dnsmon"
- 
+
 while True:
     for device in devicelist['devices']:
         upcheck = 0
@@ -58,4 +62,3 @@ while True:
 
 f.close()
 d.close()
-
