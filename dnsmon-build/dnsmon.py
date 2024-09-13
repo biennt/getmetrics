@@ -44,10 +44,6 @@ es_index_name = "dnsmon"
 while True:
     for device in devicelist['devices']:
         upcheck = 0
-        for domain in domainlist['domains']:
-            if dnsmon_check(device,domain):
-                upcheck = upcheck + 1
-        print("-- {} -- {}".format(device['ip'],upcheck))
         time_now = datetime.now()
         doc = {
           'timestamp': time_now.strftime('%Y-%m-%dT%H:%M:%S+07:00')
@@ -55,6 +51,13 @@ while True:
         doc['hostname'] = device['hostname']
         doc['ip'] = device['ip']
         doc['layer'] = device['layer']
+
+        for domain in domainlist['domains']:
+            doc[domain['name']] = "down"
+            if dnsmon_check(device,domain):
+                doc[domain['name']] = "up"
+                upcheck = upcheck + 1
+        print("-- {} -- {}".format(device['ip'],upcheck))
         doc['upcheck'] = upcheck
         res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
         print("dnsmon-result: {}".format(res['result']))
