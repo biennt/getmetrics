@@ -7,6 +7,8 @@ import sys
 
 def dnsmon_check(device,domain):
     status = "down"
+    rrset = ""
+    restime = 0
     dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
     dns.resolver.default_resolver.nameservers = [device["ip"]]
     dns.resolver.default_resolver.timeout = 3
@@ -14,6 +16,8 @@ def dnsmon_check(device,domain):
     while (status == "down") and (retry > 0):
       try:
         r = dns.resolver.resolve(domain["name"],domain["type"])
+        rrset = r.rrset
+        restime = round(r.response.time * 1000000)
         status = "up"
       except dns.exception.Timeout:
         status = "Timeout"
@@ -26,11 +30,13 @@ def dnsmon_check(device,domain):
       except dns.resolver.NXDOMAIN:
         status = "NXDomain"
       retry = retry - 1
-    print("checking {} type {} on {}, result is {}".format(domain["name"],domain["type"],device["ip"],status))
-    if status == "up":
-      return True
-    else:
-      return False
+    print("-- {} type {} on {}: result is \"{}\", status is {}, response time is {}".format(domain["name"],domain["type"],device["ip"],rrset,status,restime))
+    result = {
+       'status': status,
+       'response_time': restime,
+       'rrset': rrset
+    }
+    return result
 
 ######################################################
 
@@ -40,28 +46,25 @@ d = open('domainlist.json')
 devicelist = json.load(f)
 domainlist = json.load(d)
 es_index_name = "dnsmon"
-
 while True:
     for device in devicelist['devices']:
-        upcheck = 0
-        time_now = datetime.now()
-        doc = {
-          'timestamp': time_now.strftime('%Y-%m-%dT%H:%M:%S+07:00')
-        }
-        doc['hostname'] = device['hostname']
-        doc['ip'] = device['ip']
-        doc['layer'] = device['layer']
-
+        print("Checking {} ..".format(device['ip']))
         for domain in domainlist['domains']:
-            doc[domain['name']] = "down"
-            if dnsmon_check(device,domain):
-                doc[domain['name']] = "up"
-                upcheck = upcheck + 1
-        print("-- {} -- {}".format(device['ip'],upcheck))
-        doc['upcheck'] = upcheck
-        res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
-        print("dnsmon-result: {}".format(res['result']))
-    time.sleep(interval)
-
+          time.sleep(interval)
+          result = dnsmon_check(device,domain)
+          time_now = datetime.now()
+          doc = {
+            'timestamp': time_now.strftime('%Y-%m-%dT%H:%M:%S+07:00')
+          }
+          doc['hostname'] = device['hostname']
+          doc['ip'] = device['ip']
+          doc['prober'] = device['prober']
+          doc['query'] = domain["name"] + ' ' + domain["type"]
+          doc['status'] = result['status']
+          doc['response_time'] = result['response_time']
+          doc['rrset'] = str(result['rrset'])
+          res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), document=doc)
+          print("{} updating to elastic server: {}".format(doc['timestamp'], res['result']))
+        print("----------------------------------------")
 f.close()
 d.close()
