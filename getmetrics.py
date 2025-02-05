@@ -34,11 +34,13 @@ def get_dnsprofile(device):
             if valueobj.get('value'):
                 doc[key] = valueobj["value"]
 
+        print(doc)
+
         res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
         print("dnsprofile-result: {}".format(res['result']))
 
     except requests.exceptions.Timeout:
-        print("Timed out")
+        print("Timed out when putting doc into elastic cluster")
 
 
 def get_cachestats(device):
@@ -72,7 +74,7 @@ def get_cachestats(device):
             valueobj = metrics[key]
             if valueobj.get('value'):
                 doc[key] = str(valueobj['value'])
-
+        print(doc)
         res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
         print("cachestats-result: {}".format(res['result']))
 
@@ -152,6 +154,7 @@ def get_memstats(device):
             valueobj = hostmemstats[key]
             if valueobj.get('value'):
                 doc[key] = valueobj['value']
+        print(doc)
         res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
         print("memstats-result: {}".format(res['result']))
     except requests.exceptions.Timeout:
@@ -162,18 +165,28 @@ def get_memstats(device):
 httpsport = ""
 #httpsport = ":8443"
 
-interval = 30
+interval = 10
 f = open('devicelist.json')
 devicelist = json.load(f)
 while True:
     for device in devicelist['devices']:
+        print("--------------------------------------------------------------------------------------------")
+
         print("---- collect statistics from dns profile")
         get_dnsprofile(device)
+        time.sleep(1)
+
         print("---- collect statistics from cache profile")
         get_cachestats(device)
+        time.sleep(1)
+
         print("---- collect statistics for cpu utilization")
         get_cpustats(device)
+        time.sleep(1)
+
         print("---- collect statistics for memory utilization")
         get_memstats(device)
+        print("--------------------------------------------------------------------------------------------")
     time.sleep(interval)
 f.close()
+

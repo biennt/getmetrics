@@ -1,0 +1,173 @@
+{
+    "devices": [
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.01",
+            "ip": "10.56.108.133",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.02",
+            "ip": "10.56.108.135",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "PDL9104.R10600.CACHE.AF.03",
+            "ip": "10.56.108.137",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HLA9106.R10600.CACHE.AF.01",
+            "ip": "10.80.3.165",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HLA9106.R10600.CACHE.AF.02",
+            "ip": "10.80.3.167",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HLA9106.R10600.CACHE.AF.03",
+            "ip": "10.80.3.169",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HLA9106.R5900.CACHE.DD.01",
+            "ip": "10.80.3.171",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HLA9106.R5900.CACHE.DD.02",
+            "ip": "10.80.3.173",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "NTH9303.R5600.CACHE.AF.01",
+            "ip": "10.40.64.37",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "NTH9303.R5600.CACHE.AF.02",
+            "ip": "10.40.64.39",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "NTH9303.R5600.CACHE.AF.03",
+            "ip": "10.40.64.41",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HKH9103.R5600.CACHE.AF.01",
+            "ip": "10.42.108.5",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HKH9103.R5600.CACHE.AF.02",
+            "ip": "10.42.108.7",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HKH9103.R5600.CACHE.AF.03",
+            "ip": "10.42.108.9",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HKH9103.R5600.CACHE.DD.01",
+            "ip": "10.42.108.11",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HKH9103.R5600.CACHE.DD.02",
+            "ip": "10.42.108.13",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9602.R10600.CACHE.AF.01",
+            "ip": "10.73.98.37",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9602.R10600.CACHE.AF.02",
+            "ip": "10.73.98.39",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9602.R10600.CACHE.AF.03",
+            "ip": "10.73.98.41",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9602.R5800.CACHE.DD.01",
+            "ip": "10.73.98.43",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9602.R5800.CACHE.DD.02",
+            "ip": "10.73.98.45",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9403.R10600.CACHE.AF.01",
+            "ip": "10.74.59.69",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9403.R10600.CACHE.AF.02",
+            "ip": "10.74.59.71",
+            "username": "admin",
+            "password": "Viettel@123"
+        },
+        {
+            "layer": "cache",
+            "hostname": "HHT9403.R10600.CACHE.AF.03",
+            "ip": "10.74.59.73",
+            "username": "admin",
+            "password": "Viettel@123"
+        }
+    ]
+}
+

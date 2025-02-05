@@ -1,0 +1,8 @@
+FROM python3_withpkgs
+ENV TZ="Asia/Ho_Chi_Minh"
+WORKDIR /usr/src/app
+
+COPY . .
+
+CMD [ "python", "./getmetrics.py" ]
+
