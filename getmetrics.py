@@ -35,12 +35,15 @@ def get_dnsprofile(device):
                 doc[key] = valueobj["value"]
 
         print(doc)
-
-        res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
-        print("dnsprofile-result: {}".format(res['result']))
+        try:
+            res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
+            print("dnsprofile-result: {}".format(res['result']))
+        except Exception as e:
+            print("Error connecting to Elasticsearch")
+            print(e)
 
     except requests.exceptions.Timeout:
-        print("Timed out when putting doc into elastic cluster")
+        print("Timed out when connect to {}".format(url))
 
 
 def get_cachestats(device):
@@ -75,11 +78,15 @@ def get_cachestats(device):
             if valueobj.get('value'):
                 doc[key] = str(valueobj['value'])
         print(doc)
-        res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
-        print("cachestats-result: {}".format(res['result']))
+        try:
+            res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
+            print("cachestats-result: {}".format(res['result']))
+        except Exception as e:
+            print("Error connecting to Elasticsearch")
+            print(e)
 
     except requests.exceptions.Timeout:
-        print("Timed out")
+        print("Timed out when connect to {}".format(url))
 
 
 def get_cpustats(device):
@@ -122,10 +129,14 @@ def get_cpustats(device):
                 item["_index"] = es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d'))
                 item["_source"] = source
                 documents.append(item)
-        response = helpers.bulk(es, documents)
-        print("Bulk indexing response:", response)
+        try:
+            response = helpers.bulk(es, documents)
+            print("Bulk indexing response:", response)
+        except Exception as e:
+            print("Error connecting to Elasticsearch")
+            print(e)
     except requests.exceptions.Timeout:
-        print("Timed out")
+        print("Timed out when connect to {}".format(url))
 
 
 def get_memstats(device):
@@ -155,10 +166,14 @@ def get_memstats(device):
             if valueobj.get('value'):
                 doc[key] = valueobj['value']
         print(doc)
-        res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
-        print("memstats-result: {}".format(res['result']))
+        try:
+            res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
+            print("memstats-result: {}".format(res['result']))
+        except Exception as e:
+            print("Error connecting to Elasticsearch")
+            print(e)
     except requests.exceptions.Timeout:
-        print("Timed out")
+        print("Timed out when connect to {}".format(url))
 
 ######################################################
 
