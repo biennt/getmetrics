@@ -180,27 +180,25 @@ def get_memstats(device):
 httpsport = ""
 #httpsport = ":8443"
 
-interval = 10
+interval = 5
 f = open('devicelist.json')
 devicelist = json.load(f)
 while True:
     for device in devicelist['devices']:
         print("--------------------------------------------------------------------------------------------")
-
+        
         print("---- collect statistics from dns profile")
         get_dnsprofile(device)
-        time.sleep(1)
 
         print("---- collect statistics from cache profile")
         get_cachestats(device)
-        time.sleep(1)
 
         print("---- collect statistics for cpu utilization")
         get_cpustats(device)
-        time.sleep(1)
 
         print("---- collect statistics for memory utilization")
         get_memstats(device)
+        
         print("--------------------------------------------------------------------------------------------")
     time.sleep(interval)
 f.close()
