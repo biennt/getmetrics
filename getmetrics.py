@@ -175,6 +175,42 @@ def get_memstats(device):
     except requests.exceptions.Timeout:
         print("Timed out when connect to {}".format(url))
 
+
+def get_lsnstats(device):
+    es_index_name = "lsnstats"
+
+
+    url = "https://" + device['ip'] + httpsport + "/mgmt/tm/ltm/virtual/stats"
+
+    username = device['username']
+    password = device['password']
+
+    try:
+        response = requests.get(url, auth=(username, password),verify=False,timeout=3)
+        api_data = response.json()
+        lsnall = api_data['entries']
+
+        for item in lsnall.items():
+          tmp = item[1]
+          metrics = tmp["nestedStats"]["entries"]
+          time_now = datetime.now()
+          doc = {
+              'timestamp': time_now.strftime('%Y-%m-%dT%H:%M:%S+07:00')
+          }
+          doc['hostname'] = device['hostname']
+          doc['ip'] = device['ip']
+          doc['layer'] = device['layer']
+          for key in metrics:
+            valueobj = metrics[key]
+            if valueobj.get('value'):
+              doc[key] = valueobj['value']
+            if valueobj.get('description'):
+              doc[key] = valueobj['description']
+          print(json.dumps(doc,indent=2))
+
+    except requests.exceptions.Timeout:
+        print("Timed out when connecting to {}".format(url))
+        
 ######################################################
 
 httpsport = ""
