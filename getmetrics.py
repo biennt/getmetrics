@@ -207,7 +207,12 @@ def get_lsnstats(device):
             if valueobj.get('description'):
               doc[key] = valueobj['description']
           print(json.dumps(doc,indent=2))
-
+          try:
+            res = es.index(index=es_index_name + "-{}".format(time_now.strftime('%Y.%m.%d')), body=doc)
+            print("lsnstats-result: {}".format(res['result']))
+          except Exception as e:
+            print("Error connecting to Elasticsearch")
+            print(e)
     except requests.exceptions.Timeout:
         print("Timed out when connecting to {}".format(url))
         
